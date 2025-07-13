@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Object Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        .example-box {
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 8px;
+            max-width: 600px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Understanding Objects: The Person Example</h1>
+    <p>This page demonstrates how to create a 'Person' object using a special JavaScript function called a 'constructor'.</p>
+    <p>Open your browser's developer console (usually by pressing F12) to see the details of the created people!</p>
+
+    <div class="example-box">
+        <h2>What's Happening Behind the Scenes?</h2>
+        <p>In the JavaScript code, we're defining a blueprint for a 'Person'. Then, we're using that blueprint to create two actual people: Alice and Bob. Their details will be printed in your console.</p>
+    </div>
+
+    <script>
+        // This is like a blueprint or a factory for creating 'Person' objects.
+        // It takes a 'name' and an 'age' when you create a new Person.
+        function Person(name, age) {
+            this.name = name; // 'this.name' means this specific person's name
+            this.age = age;   // 'this.age' means this specific person's age
+
+            // This is a special action (method) that every Person object can do.
+            this.greet = function() {
+                return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+            };
+        }
+
+        // Now, let's create two actual people using our 'Person' blueprint:
+        const person1 = new Person("Alice", 30);
+        const person2 = new Person("Bob", 25);
+
+        // We can now look at their details and make them greet!
+        console.log("--- Details for Person 1 (Alice) ---");
+        console.log("Person 1 object:", person1);
+        console.log("Person 1's name:", person1.name);
+        console.log("Person 1's age:", person1.age);
+        console.log("Alice says:", person1.greet()); // Alice uses her own greet method
+
+        console.log("\n--- Details for Person 2 (Bob) ---");
+        console.log("Person 2 object:", person2);
+        console.log("Person 2's name:", person2.name);
+        console.log("Person 2's age:", person2.age);
+        console.log("Bob says:", person2.greet()); // Bob uses his own greet method
+    </script>
+</body>
+</html>

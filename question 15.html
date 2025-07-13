@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Input Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center; /* Center content by default */
+            font-size: 16px; /* Base font size */
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        div {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        input[type="text"], button {
+            padding: 8px 12px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            background-color: #e9ecef;
+            border-color: #ced4da;
+        }
+        #displayText {
+            font-weight: bold;
+            color: #28a745;
+            min-height: 20px; /* Ensure some height even when empty */
+            border: 1px dashed #28a745;
+            padding: 10px;
+            margin-top: 15px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding: 0;
+        }
+        li {
+            background-color: #e6f7ff;
+            border: 1px solid #b3e0ff;
+            margin-bottom: 5px;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: left; /* Align list items left */
+        }
+        /* Styling for the new image */
+        .page-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            display: block; /* Center image */
+        }
+
+        /* New CSS for the responsive box */
+        .responsive-box {
+            background-color: #e0f7fa; /* Light cyan background */
+            border: 2px solid #00bcd4; /* Cyan border */
+            padding: 20px;
+            margin: 30px auto; /* Center with more margin */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            width: 80%; /* Start with 80% width */
+            max-width: 700px; /* Maximum width for larger screens */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            text-align: left; /* Align text left inside the box */
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        /* Media query for smaller screens (e.g., mobile) for responsive box */
+        @media (max-width: 600px) {
+            .responsive-box {
+                width: 95%; /* Take up more width on smaller screens */
+                padding: 15px;
+                font-size: 1em;
+            }
+            /* Adjust form input width on small screens */
+            form input[type="text"],
+            form input[type="email"] {
+                width: calc(100% - 20px); /* Full width minus padding */
+                margin-bottom: 10px;
+            }
+            form button {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+
+        /* Additional Media Query Example: Change h1 font size on very small screens */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.8em; /* Smaller font size for h1 on very small screens */
+            }
+            body {
+                margin: 10px; /* Less margin on very small screens */
+            }
+        }
+
+        /* NEW MEDIA QUERY: Change body font size on small screens */
+        @media (max-width: 500px) {
+            body {
+                font-size: 14px; /* Smaller base font size for very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Understanding Objects: The Person Example</h1>
+    <p>This page demonstrates how to create a 'Person' object using a special JavaScript function called a 'constructor'.</p>
+    <p>Open your browser's developer console (usually by pressing F12) to see the details of the created people!</p>
+
+    <div class="example-box">
+        <h2>What's Happening Behind the Scenes?</h2>
+        <p>In the JavaScript code, we're defining a blueprint for a 'Person'. Then, we're using that blueprint to create two actual people: Alice and Bob. Their details will be printed in your console.</p>
+    </div>
+
+    <hr>
+
+    <!-- Placeholder Image with alt attribute -->
+    <h2>Image Example</h2>
+    <img
+        src="https://placehold.co/600x300/ADD8E6/000000?text=Sample+Image"
+        alt="A placeholder image with text 'Sample Image' on a light blue background."
+        class="page-image"
+    >
+
+    <hr>
+
+    <!-- Contact Form with aria-label -->
+    <h2>Contact Us</h2>
+    <form aria-label="Contact Information Form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <hr>
+
+    <h2>Dynamic Text Change Example</h2>
+    <div id="message">
+        This is the original message.
+    </div>
+    <button id="changeTextButton">
+        Change Message
+    </button>
+
+    <hr>
+
+    <h2>Input Text Display Example</h2>
+    <input type="text" id="textInput" placeholder="Type something here...">
+    <button id="displayInputButton">
+        Display Input
+    </button>
+    <div id="displayText">
+        Your input will appear here.
+    </div>
+
+    <hr>
+
+    <h2>Dynamic List Example</h2>
+    <ul id="myList">
+        <li>Initial List Item 1</li>
+        <li>Initial List Item 2</li>
+    </ul>
+    <button id="addItemButton">Add New Item</button>
+
+    <hr>
+
+    <!-- Responsive div (already present) -->
+    <div class="responsive-box">
+        <h2>Responsive Design Example</h2>
+        <p>This box is designed to be responsive. Try resizing your browser window (especially making it narrower) to see how its width and padding adjust to fit smaller screens.</p>
+        <p>On larger screens, it takes up 80% of the available width, up to a maximum of 700px. On screens smaller than 600px wide, it will expand to 95% width and have slightly less padding, demonstrating basic responsiveness using CSS media queries.</p>
+    </div>
+
+    <script>
+        // This is now a JavaScript Class, which is a more modern way to create blueprints for objects.
+        class Person {
+            // The 'constructor' is a special method that runs when you create a new Person.
+            constructor(name, age) {
+                this.name = name; // 'this.name' means this specific person's name
+                this.age = age;   // 'this.age' means this specific person's age
+            }
+
+            // This is a method (action) that every Person object can do.
+            greet() {
+                return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+            }
+
+            // New method: sayHello()
+            sayHello() {
+                return `Hi there! I'm ${this.name}.`;
+            }
+        }
+
+        // Now, let's create two actual people using our 'Person' blueprint:
+        const person1 = new Person("Alice", 30);
+        const person2 = new Person("Bob", 25);
+
+        // We can now look at their details and make them greet!
+        console.log("--- Details for Person 1 (Alice) ---");
+        console.log("Person 1 object:", person1);
+        console.log("Person 1's name:", person1.name);
+        console.log("Person 1's age:", person1.age);
+        console.log("Alice says (greet):", person1.greet()); // Alice uses her own greet method
+        console.log("Alice says (sayHello):", person1.sayHello()); // Alice uses her new sayHello method
+
+        console.log("\n--- Details for Person 2 (Bob) ---");
+        console.log("Person 2 object:", person2);
+        console.log("Person 2's name:", person2.name);
+        console.log("Person 2's age:", person2.age);
+        console.log("Bob says (greet):", person2.greet()); // Bob uses his own greet method
+        console.log("Bob says (sayHello):", person2.sayHello()); // Bob uses his new sayHello method
+
+        // JavaScript for changing text on button click
+        document.addEventListener('DOMContentLoaded', () => {
+            const changeTextButton = document.getElementById('changeTextButton');
+            const messageElement = document.getElementById('message');
+
+            if (changeTextButton && messageElement) {
+                changeTextButton.addEventListener('click', () => {
+                    messageElement.textContent = "The message has been changed!";
+                });
+            }
+
+            // JavaScript for input text display
+            const textInput = document.getElementById('textInput');
+            const displayInputButton = document.getElementById('displayInputButton');
+            const displayTextElement = document.getElementById('displayText');
+
+            if (textInput && displayInputButton && displayTextElement) {
+                displayInputButton.addEventListener('click', () => {
+                    displayTextElement.textContent = textInput.value;
+                });
+            }
+
+            // Dynamic list functionality
+            const addItemButton = document.getElementById('addItemButton');
+            const myList = document.getElementById('myList');
+            let itemCounter = 3;
+
+            if (addItemButton && myList) {
+                addItemButton.addEventListener('click', () => {
+                    const newItem = document.createElement('li');
+                    newItem.textContent = `Dynamically Added Item ${itemCounter}`;
+                    myList.appendChild(newItem);
+                    itemCounter++;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
