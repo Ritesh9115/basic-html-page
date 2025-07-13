@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Basics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        .console-message {
+            margin-top: 30px;
+            padding: 15px;
+            border: 1px solid #007bff;
+            background-color: #e6f7ff;
+            border-radius: 8px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Styles for new elements */
+        .section-container {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: left; /* Align text left within containers */
+        }
+        .section-container h2 {
+            color: #0056b3;
+            margin-bottom: 15px;
+            text-align: center; /* Center heading within container */
+        }
+        .section-container button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .section-container button:hover {
+            background-color: #0056b3;
+        }
+        .section-container input[type="text"] {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 24px); /* Account for padding */
+            margin-bottom: 10px;
+        }
+        #message, #displayText {
+            border: 1px dashed #a0a0a0;
+            padding: 10px;
+            margin-top: 10px;
+            min-height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            color: #555;
+            border-radius: 5px;
+        }
+        #displayText {
+            font-weight: bold;
+            color: #28a745;
+            border-color: #28a745;
+        }
+        #clearAllButton {
+            background-color: #dc3545; /* Red color for clear button */
+        }
+        #clearAllButton:hover {
+            background-color: #c82333;
+        }
+
+        /* Styles for the list */
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding: 0;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        li {
+            background-color: #e6f7ff;
+            border: 1px solid #b3e0ff;
+            margin-bottom: 5px;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: left;
+        }
+        /* Highlight class for list items */
+        .highlight {
+            background-color: #fffacd; /* Light yellow */
+            border-color: #ffd700; /* Gold */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Basics Demonstration</h1>
+    <p>This page demonstrates a few fundamental JavaScript concepts.</p>
+    <p>Please open your browser's **developer console** (usually by pressing `F12` and selecting the "Console" tab) to see the output of the functions and variable types.</p>
+
+    <div class="console-message">
+        <p>An `alert()` message will pop up when the page loads.</p>
+        <p>Check the console for:
+            <ul>
+                <li>Sum function test results</li>
+                <li>Variable type using `typeof`</li>
+                <li>The `window` object</li>
+                <li>DOM traversal examples</li>
+                <li>Person object details</li>
+            </ul>
+        </p>
+    </div>
+
+    <hr>
+
+    <div class="section-container">
+        <h2>Dynamic Text Change</h2>
+        <div id="message">
+            This is the original message.
+        </div>
+        <button id="changeMessageButton">Change Message</button>
+    </div>
+
+    <hr>
+
+    <div class="section-container">
+        <h2>Input Text Display</h2>
+        <input type="text" id="textInput" placeholder="Type something here...">
+        <button id="displayInputButton">Display Input</button>
+        <div id="displayText">
+            Your input will appear here.
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="section-container">
+        <h2>Clear All</h2>
+        <button id="clearAllButton">Clear Input & Message</button>
+    </div>
+
+    <hr>
+
+    <div class="section-container">
+        <h2>DOM Traversal Example</h2>
+        <p id="domTargetParagraph">This paragraph is used to demonstrate DOM traversal.</p>
+        <p>Check the console for `parentNode`, `childNodes`, and `nextSibling` examples related to the paragraph above.</p>
+    </div>
+
+    <hr>
+
+    <div class="section-container">
+        <h2>Dynamic List Manipulation</h2>
+        <ul id="myList">
+            <li>List Item 1</li>
+            <li>List Item 2</li>
+        </ul>
+        <button id="addItemButton">Add New Item</button>
+        <button id="removeLastItemButton">Remove Last Item</button>
+        <button id="highlightItemsButton">Highlight All Items</button>
+    </div>
+
+
+    <script>
+        // 1. Script that shows a greeting using alert()
+        alert("Hello! Welcome to the JavaScript Basics page!");
+
+        // 2. Function using arrow syntax that takes two numbers and returns their sum.
+        const sumNumbers = (a, b) => {
+            return a + b;
+        };
+
+        // 3. Use console.log() to test your function with different inputs.
+        console.log("--- Testing sumNumbers function ---");
+        console.log("Sum of 5 and 10:", sumNumbers(5, 10));
+        console.log("Sum of -2 and 8:", sumNumbers(-2, 8));
+        console.log("Sum of 3.5 and 2.1:", sumNumbers(3.5, 2.1));
+        console.log("Sum of 0 and 0:", sumNumbers(0, 0));
+
+        // 4. Try logging the type of a variable using typeof.
+        console.log("\n--- Logging variable types ---");
+        let myNumber = 123;
+        let myString = "Hello World";
+        let myBoolean = true;
+        let myObject = { key: "value" };
+        let myFunction = () => {};
+        let myNull = null;
+        let myUndefined = undefined;
+
+        console.log("Type of myNumber:", typeof myNumber);
+        console.log("Type of myString:", typeof myString);
+        console.log("Type of myBoolean:", typeof myBoolean);
+        console.log("Type of myObject:", typeof myObject);
+        console.log("Type of myFunction:", typeof myFunction);
+        console.log("Type of myNull:", typeof myNull);
+        console.log("Type of myUndefined:", typeof myUndefined);
+
+        // 5. Log the window object in the browser console.
+        console.log("\n--- Logging the window object ---");
+        console.log("The window object:", window);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get elements for message change
+            const changeMessageButton = document.getElementById('changeMessageButton');
+            const messageElement = document.getElementById('message');
+
+            // Get elements for input display
+            const textInput = document.getElementById('textInput');
+            const displayInputButton = document.getElementById('displayInputButton');
+            const displayTextElement = document.getElementById('displayText');
+
+            // Get element for clear all
+            const clearAllButton = document.getElementById('clearAllButton');
+
+            // Get elements for dynamic list
+            const addItemButton = document.getElementById('addItemButton');
+            const removeLastItemButton = document.getElementById('removeLastItemButton');
+            const highlightItemsButton = document.getElementById('highlightItemsButton');
+            const myList = document.getElementById('myList');
+            let itemCounter = 3; // Counter for new list items
+
+            // Event listener for changing message text
+            if (changeMessageButton && messageElement) {
+                changeMessageButton.addEventListener('click', () => {
+                    messageElement.textContent = "Message updated by button click!";
+                });
+            }
+
+            // Event listener for displaying input text
+            if (textInput && displayInputButton && displayTextElement) {
+                displayInputButton.addEventListener('click', () => {
+                    displayTextElement.textContent = textInput.value;
+                });
+            }
+
+            // Event listener for clearing input and message
+            if (clearAllButton && textInput && messageElement && displayTextElement) {
+                clearAllButton.addEventListener('click', () => {
+                    textInput.value = ''; // Clear the input field
+                    messageElement.textContent = "This is the original message."; // Reset message
+                    displayTextElement.textContent = "Your input will appear here."; // Reset display text
+                });
+            }
+
+            // DOM Traversal Examples
+            console.log("\n--- DOM Traversal Examples ---");
+            const domTargetParagraph = document.getElementById('domTargetParagraph');
+            if (domTargetParagraph) {
+                console.log("Target Element:", domTargetParagraph);
+                console.log("Parent Node of target paragraph:", domTargetParagraph.parentNode); // Should be the .section-container div
+                console.log("Child Nodes of body:", document.body.childNodes); // Includes text nodes (whitespace)
+                console.log("Next Sibling of target paragraph:", domTargetParagraph.nextSibling); // Might be a text node or the next element
+                console.log("Next Element Sibling of target paragraph:", domTargetParagraph.nextElementSibling); // Skips text nodes
+            } else {
+                console.error("Element with id 'domTargetParagraph' not found for DOM traversal examples.");
+            }
+
+            // Event listener for adding list item
+            if (addItemButton && myList) {
+                addItemButton.addEventListener('click', () => {
+                    const newItem = document.createElement('li');
+                    newItem.textContent = `Dynamically Added Item ${itemCounter}`;
+                    myList.appendChild(newItem);
+                    itemCounter++;
+                });
+            }
+
+            // Event listener for removing last list item
+            if (removeLastItemButton && myList) {
+                removeLastItemButton.addEventListener('click', () => {
+                    if (myList.lastElementChild) { // Check if there's a last child to remove
+                        myList.removeChild(myList.lastElementChild);
+                    } else {
+                        console.log("No more items to remove from the list.");
+                    }
+                });
+            }
+
+            // Event listener for highlighting all list items
+            if (highlightItemsButton && myList) {
+                highlightItemsButton.addEventListener('click', () => {
+                    const listItems = myList.getElementsByTagName('li'); // Get all <li> elements inside myList
+                    for (let i = 0; i < listItems.length; i++) {
+                        listItems[i].classList.toggle('highlight'); // Add or remove the 'highlight' class
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
