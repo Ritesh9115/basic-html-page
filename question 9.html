@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Input Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        div {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        input[type="text"], button {
+            padding: 8px 12px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            background-color: #e9ecef;
+            border-color: #ced4da;
+        }
+        #displayText {
+            font-weight: bold;
+            color: #28a745;
+            min-height: 20px; /* Ensure some height even when empty */
+            border: 1px dashed #28a745;
+            padding: 10px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Arrow Function Example: Sum of Two Numbers</h1>
+    <p>Open your browser's developer console (F12) to see the output from the sum functions.</p>
+
+    <hr>
+
+    <h2>Dynamic Text Change Example</h2>
+    <div id="message">
+        This is the original message.
+    </div>
+    <button id="changeTextButton">
+        Change Message
+    </button>
+
+    <hr>
+
+    <h2>Input Text Display Example</h2>
+    <input type="text" id="textInput" placeholder="Type something here...">
+    <button id="displayInputButton">
+        Display Input
+    </button>
+    <div id="displayText">
+        Your input will appear here.
+    </div>
+
+    <script>
+        // Function using arrow syntax that takes two numbers and returns their sum.
+        const sumTwoNumbers = (num1, num2) => {
+            return num1 + num2;
+        };
+
+        // Examples of using the sum function
+        const result1 = sumTwoNumbers(10, 5);
+        console.log("Sum of 10 and 5:", result1);
+
+        const result2 = sumTwoNumbers(7, -3);
+        console.log("Sum of 7 and -3:", result2);
+
+        const result3 = sumTwoNumbers(2.5, 3.7);
+        console.log("Sum of 2.5 and 3.7:", result3);
+
+        const numberA = 100;
+        const numberB = 200;
+        const result4 = sumTwoNumbers(numberA, numberB);
+        console.log(`Sum of ${numberA} and ${numberB}:`, result4);
+
+        // JavaScript for changing text on button click (original functionality)
+        document.addEventListener('DOMContentLoaded', () => {
+            const changeTextButton = document.getElementById('changeTextButton');
+            const messageElement = document.getElementById('message');
+
+            if (changeTextButton && messageElement) {
+                changeTextButton.addEventListener('click', () => {
+                    messageElement.textContent = "The message has been changed!";
+                });
+            } else {
+                console.error("Could not find 'changeTextButton' or 'message' element. Make sure their IDs are correct in the HTML.");
+            }
+
+            // New JavaScript for input text display
+            const textInput = document.getElementById('textInput');
+            const displayInputButton = document.getElementById('displayInputButton');
+            const displayTextElement = document.getElementById('displayText');
+
+            if (textInput && displayInputButton && displayTextElement) {
+                displayInputButton.addEventListener('click', () => {
+                    displayTextElement.textContent = textInput.value; // Get value from input and set to display element
+                });
+            } else {
+                console.error("Could not find 'textInput', 'displayInputButton', or 'displayText' element. Make sure their IDs are correct in the HTML.");
+            }
+
+            // Q9: Demonstrating parentNode, childNodes, and nextSibling
+            console.log("--- DOM Traversal Examples ---");
+
+            // Get a reference to the 'message' div
+            const messageDiv = document.getElementById('message');
+
+            if (messageDiv) {
+                // 1. parentNode: Log the parent element of the 'message' div
+                console.log("Parent of 'message' div:", messageDiv.parentNode); // Should be <body>
+
+                // 2. childNodes: Log all child nodes of the <body> element
+                // Note: childNodes includes text nodes (whitespace) and comment nodes
+                console.log("Child nodes of <body>:", document.body.childNodes);
+
+                // 3. nextSibling: Log the next sibling of the 'message' div
+                // This might be a text node (whitespace) or the next HTML element
+                console.log("Next sibling of 'message' div:", messageDiv.nextSibling);
+
+                // To get the next *element* sibling (skipping text nodes)
+                console.log("Next ELEMENT sibling of 'message' div:", messageDiv.nextElementSibling);
+            } else {
+                console.error("Could not find 'message' div for DOM traversal examples.");
+            }
+        });
+    </script>
+</body>
+</html>
