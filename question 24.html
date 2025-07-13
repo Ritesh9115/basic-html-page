@@ -1,0 +1,84 @@
+// public/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My React App</title>
+    <!-- Tailwind CSS CDN for basic styling (optional, but good practice) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5; /* Light gray background */
+        }
+        #root {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+</body>
+</html>
+
+// src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App'; // Import the main App component
+
+// Get the root element from public/index.html
+const rootElement = document.getElementById('root');
+
+// Create a root and render the App component
+// This is the entry point where your React application starts
+ReactDOM.createRoot(rootElement).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// src/components/Welcome.js
+import React from 'react';
+
+const Welcome = () => {
+  return (
+    <h2 className="text-3xl font-semibold text-green-700 mb-4 rounded-md p-2 bg-green-100 shadow-md">
+      Welcome to My React Application!
+    </h2>
+  );
+};
+
+export default Welcome;
+
+// src/App.js
+import React from 'react';
+import Welcome from './components/Welcome'; // Import the Welcome component
+
+const App = () => {
+  return (
+    <div className="bg-white p-8 rounded-lg shadow-xl text-center">
+      <h1 className="text-4xl font-bold text-blue-700 mb-6">
+        Hello from App.js!
+      </h1>
+      {/* Use the Welcome component here */}
+      <Welcome />
+      <p className="text-gray-700 text-lg mt-4">
+        This is a basic React application demonstrating component usage.
+      </p>
+    </div>
+  );
+};
+
+export default App;

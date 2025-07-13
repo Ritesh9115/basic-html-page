@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My React App - Single File</title>
+    <!-- Tailwind CSS CDN for basic styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: sans-serif; /* Fallback to a generic sans-serif font */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5; /* Light gray background */
+        }
+        #root {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <script type="module">
+        // Import React and ReactDOM from CDN (for single file)
+        // In a typical Create React App setup, these would be handled by a build tool.
+        // For this single-file setup, we simulate the imports.
+        // Note: For actual React development, use a build tool like Vite or Create React App.
+        import React, { useState } from 'https://esm.sh/react@18.2.0';
+        import ReactDOM from 'https://esm.sh/react-dom@18.2.0/client';
+
+        // src/components/Welcome.js content
+        const Welcome = () => {
+            return (
+                <h2 className="text-3xl font-semibold text-green-700 mb-4 rounded-md p-2 bg-green-100 shadow-md">
+                    Welcome to My React Application!
+                </h2>
+            );
+        };
+
+        // src/components/UserCard.js content
+        const UserCard = ({ name, email, age }) => {
+            const handleClick = () => {
+                console.log(`Clicked on ${name}`);
+            };
+
+            return (
+                <div className="bg-blue-50 p-4 rounded-lg shadow-md mb-4 text-left border border-blue-200">
+                    <h3 className="text-xl font-bold text-blue-800 mb-2">{name}</h3>
+                    <p className="text-gray-700 text-base">Email: <span className="font-medium">{email}</span></p>
+                    <p className="text-gray-700 text-base">Age: <span className="font-medium">{age}</span></p>
+                    <button
+                        onClick={handleClick}
+                        className="mt-4 px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                    >
+                        View Profile
+                    </button>
+                </div>
+            );
+        };
+
+        // src/App.js content
+        const App = () => {
+            // State for live input update
+            const [liveInputText, setLiveInputText] = useState('');
+
+            // States for form fields
+            const [formName, setFormName] = useState('');
+            const [formEmail, setFormEmail] = useState('');
+            const [formPassword, setFormPassword] = useState('');
+
+            // Handle form submission
+            const handleFormSubmit = (e) => {
+                e.preventDefault(); // Prevent default browser form submission
+                console.log('Form Data Submitted:');
+                console.log('Name:', formName);
+                console.log('Email:', formEmail);
+                console.log('Password:', formPassword);
+                // You could send this data to a server here
+                alert(`Form Submitted!\nName: ${formName}\nEmail: ${formEmail}`); // Using alert for immediate feedback
+                // Optionally clear form fields after submission
+                setFormName('');
+                setFormEmail('');
+                setFormPassword('');
+            };
+
+            return (
+                <div className="bg-white p-8 rounded-lg shadow-xl text-center">
+                    <h1 className="text-4xl font-bold text-blue-700 mb-6">
+                        Hello from App.js!
+                    </h1>
+                    {/* Use the Welcome component here */}
+                    <Welcome />
+                    <p className="text-gray-700 text-lg mt-4 mb-8">
+                        This is a basic React application demonstrating component usage.
+                    </p>
+
+                    {/* Render three UserCard components with different props */}
+                    <h2 className="text-3xl font-bold text-purple-700 mb-6">Our Users</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+                        <UserCard name="Alice Smith" email="alice@example.com" age={28} />
+                        <UserCard name="Bob Johnson" email="bob@example.com" age={35} />
+                        <UserCard name="Charlie Brown" email="charlie@example.com" age={22} />
+                    </div>
+
+                    {/* Live Input Field and Display */}
+                    <div className="mb-10 p-6 bg-gray-50 rounded-lg shadow-md">
+                        <h2 className="text-2xl font-bold text-indigo-700 mb-4">Live Input Update</h2>
+                        <input
+                            type="text"
+                            className="p-3 border border-gray-300 rounded-md w-full max-w-md mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            placeholder="Type something here..."
+                            value={liveInputText}
+                            onChange={(e) => setLiveInputText(e.target.value)}
+                        />
+                        <p className="text-gray-800 text-xl font-medium">
+                            Current Input: <span className="text-indigo-600">{liveInputText}</span>
+                        </p>
+                    </div>
+
+                    {/* Form with Name, Email, and Password */}
+                    <div className="p-6 bg-green-50 rounded-lg shadow-md">
+                        <h2 className="text-2xl font-bold text-green-700 mb-4">User Registration Form</h2>
+                        <form onSubmit={handleFormSubmit} className="space-y-4 text-left max-w-md mx-auto">
+                            <div>
+                                <label htmlFor="formName" className="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                                <input
+                                    type="text"
+                                    id="formName"
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    value={formName}
+                                    onChange={(e) => setFormName(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="formEmail" className="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                                <input
+                                    type="email"
+                                    id="formEmail"
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    value={formEmail}
+                                    onChange={(e) => setFormEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="formPassword" className="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+                                <input
+                                    type="password"
+                                    id="formPassword"
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                                    value={formPassword}
+                                    onChange={(e) => setFormPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                            >
+                                Register
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            );
+        };
+
+        // src/index.js rendering logic
+        const rootElement = document.getElementById('root');
+        ReactDOM.createRoot(rootElement).render(
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        );
+    </script>
+</body>
+</html>
